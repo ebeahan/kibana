@@ -1,0 +1,13 @@
+{
+  "id": "ecsValidatorFieldEditorExample",
+  "kibanaVersion": "kibana",
+  "version": "0.0.1",
+  "server": false,
+  "ui": true,
+  "requiredPlugins": ["developerExamples", "esUiShared", "kibanaReact"],
+  "owner": {
+    "name": "ECS",
+    "githubTeam": "team-ecs"
+  },
+  "description": "ECS validator field editor example app"
+}
