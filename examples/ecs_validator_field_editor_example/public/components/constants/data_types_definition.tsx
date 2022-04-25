@@ -44,6 +44,35 @@ export const TYPE_DEFINITION: { [key in DataType]: DataTypeDefinition } = {
       </p>
     ),
   },
+  match_only_text: {
+    value: 'match_only_text',
+    label: i18n.translate('xpack.idxMgmt.mappingsEditor.dataType.matchOnlyTextDescription', {
+      defaultMessage: 'Match only text',
+    }),
+    documentation: {
+      main: '/text.html#match-only-text-field-type',
+    },
+    description: () => (
+      <p>
+        <FormattedMessage
+          id="xpack.idxMgmt.mappingsEditor.dataType.matchOnlyTextLongDescription"
+          defaultMessage="Text fields support full-text search by breaking strings into individual, searchable terms. To index structured content, such as an email address, use the {keyword}."
+          values={{
+            keyword: (
+              <EuiLink href={documentationService.getTypeDocLink('keyword')} target="_blank">
+                {i18n.translate(
+                  'xpack.idxMgmt.mappingsEditor.dataType.matchOnlyTextLongDescription.keywordTypeLink',
+                  {
+                    defaultMessage: 'keyword data type',
+                  }
+                )}
+              </EuiLink>
+            ),
+          }}
+        />
+      </p>
+    ),
+  },
   keyword: {
     value: 'keyword',
     label: i18n.translate('xpack.idxMgmt.mappingsEditor.dataType.keywordDescription', {
@@ -920,6 +949,7 @@ export const MAIN_TYPES: MainType[] = [
   'ip',
   'join',
   'keyword',
+  'match_only_text',
   'nested',
   'numeric',
   'object',

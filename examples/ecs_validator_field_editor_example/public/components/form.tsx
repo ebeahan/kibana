@@ -24,11 +24,12 @@ import {
   EuiTitle,
 } from '@elastic/eui';
 import { FormattedMessage } from '@kbn/i18n-react';
+import { validEcsTypeMapping } from '@kbn/ecs-validator';
 
 import { useForm, Form, FormDataProvider } from './shared_imports';
 import { EcsField } from './ecs_field';
 import { TypeField } from './type_field';
-import { validEcsMapping } from './lib';
+// import { validEcsMapping } from './lib';
 
 const formWrapper = (props: any) => <form {...props} />;
 
@@ -50,7 +51,7 @@ export const Demo = () => {
       <FormDataProvider pathsToWatch={['type', 'field']}>
         {({ type, field }) => {
           if (field) {
-            const validMapping = validEcsMapping(field, type);
+            const validMapping = validEcsTypeMapping(field, type);
 
             return (
               <EuiFlexItem grow={false}>

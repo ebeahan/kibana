@@ -15,10 +15,10 @@ import {
   EuiFormRow,
 } from '@elastic/eui';
 import { FieldIcon } from '@kbn/react-field';
-import { DisplayToggles } from './display_toggles';
+import { ECSSchemaOptions } from '@kbn/ecs-validator';
 
+import { DisplayToggles } from './display_toggles';
 import { getFieldValidityAndErrorMessage } from '../../../../src/plugins/es_ui_shared/static/forms/hook_form_lib';
-import ECSSchema from '../common/schemas/ecs/v1.12.1.json';
 import { UseField } from './shared_imports';
 
 const typeMap = {
@@ -31,6 +31,7 @@ const typeMap = {
   short: 'number',
   byte: 'number',
   text: 'string',
+  match_only_text: 'string',
   keyword: 'string',
   '': 'string',
   geo_point: 'geo_point',
@@ -39,11 +40,6 @@ const typeMap = {
   boolean: 'boolean',
   constant_keyword: 'string',
 };
-
-const ECSSchemaOptions = ECSSchema.map((ecs) => ({
-  label: ecs.field,
-  value: ecs,
-}));
 
 type ECSSchemaOption = typeof ECSSchemaOptions[0];
 

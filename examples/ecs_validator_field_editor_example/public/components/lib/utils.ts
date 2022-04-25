@@ -15,18 +15,6 @@ import {
   TYPE_ONLY_ALLOWED_AT_ROOT_LEVEL,
 } from '../constants';
 
-import ECSSchema from '../../common/schemas/ecs/v1.12.1.json';
-
-const mappedFields = ECSSchema.map((field) => ({
-  [field.field]: field,
-}));
-
-export const ECSSchemaOptions = Object.assign({}, ...mappedFields);
-
-export const validEcsMapping = (field, type) => {
-  return field?.[0].value.type === type?.[0].value;
-};
-
 export const getFieldConfig = <T = unknown>(
   param: ParameterName,
   prop?: string
