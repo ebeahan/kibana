@@ -6,5 +6,10 @@
  * Side Public License, v 1.
  */
 
-export * from './field_definition';
-export * from './schema';
+export const getEcsMappingsMock = () => ({
+  '@timestamp': '2022-03-31T18:48:35.000Z',
+  ecs: {
+    version: '8.0.0',
+  },
+  message: 'Test',
+});

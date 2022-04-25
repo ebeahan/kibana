@@ -6,5 +6,12 @@
  * Side Public License, v 1.
  */
 
-export * from './field_definition';
-export * from './schema';
+export interface SchemaField {
+  field: string;
+  type: string;
+  normalization: string;
+  example: string | string[] | number;
+  description: string;
+}
+
+export type SchemaFields = SchemaField[];

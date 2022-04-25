@@ -6,5 +6,8 @@
  * Side Public License, v 1.
  */
 
-export * from './field_definition';
-export * from './schema';
+import { SchemaField } from './schema';
+
+export interface MappedFields {
+  [key: string]: SchemaField;
+}

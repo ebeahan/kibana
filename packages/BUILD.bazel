@@ -20,6 +20,7 @@ filegroup(
       "//packages/kbn-dev-utils:build",
       "//packages/kbn-doc-links:build",
       "//packages/kbn-docs-utils:build",
+      "//packages/kbn-ecs-validator:build",
       "//packages/kbn-es:build",
       "//packages/kbn-es-archiver:build",
       "//packages/kbn-es-query:build",

@@ -137,6 +137,7 @@
     "@kbn/config-schema": "link:bazel-bin/packages/kbn-config-schema",
     "@kbn/crypto": "link:bazel-bin/packages/kbn-crypto",
     "@kbn/doc-links": "link:bazel-bin/packages/kbn-doc-links",
+    "@kbn/ecs-validator": "link:bazel-bin/packages/kbn-ecs-validator",
     "@kbn/es-query": "link:bazel-bin/packages/kbn-es-query",
     "@kbn/field-types": "link:bazel-bin/packages/kbn-field-types",
     "@kbn/flot-charts": "link:bazel-bin/packages/kbn-flot-charts",
