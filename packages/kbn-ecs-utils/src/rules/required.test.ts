@@ -7,7 +7,7 @@
  */
 
 import { validateTimestampPresent, validateEcsVersionPresent } from './required';
-import { getEcsMappingsMock } from './required.mock';
+import { getEcsMappingsMock } from './mappings.mock';
 
 describe('required rule validations', () => {
   test('@timestamp is present', () => {

@@ -6,5 +6,12 @@
  * Side Public License, v 1.
  */
 
-export * from './recommended';
-export * from './required';
+import { SchemaFields } from '../types';
+
+export const validateMessagePresent = (mapping: SchemaFields): string[] => {
+  if (!('message' in mapping)) {
+    return ['message field should be populated'];
+  } else {
+    return [];
+  }
+};
