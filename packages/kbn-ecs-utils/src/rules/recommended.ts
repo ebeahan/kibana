@@ -15,3 +15,20 @@ export const validateMessagePresent = (mapping: SchemaFields): string[] => {
     return [];
   }
 };
+
+export const validateSrcDstPair = (mapping: SchemaFields): string[] => {
+  if ('source' in mapping) {
+    if (!('destination' in mapping)) {
+      return ['destination fields should be populated with source fields'];
+    }
+  } else if ('destination' in mapping) {
+    if (!('source' in mapping)) {
+      return ['source fields should be populated with destination fields'];
+    }
+  }
+  return [];
+};
+
+export const runRecommendedRules = (mapping: SchemaFields): string[] => {
+  return [...validateMessagePresent(mapping), ...validateSrcDstPair(mapping)];
+};

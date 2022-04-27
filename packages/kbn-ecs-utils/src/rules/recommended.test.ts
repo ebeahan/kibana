@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { validateMessagePresent } from './recommended';
+import { validateMessagePresent, validateSrcDstPair } from './recommended';
 import { getEcsMappingsMock } from './mappings.mock';
 
 describe('recommended rule validations', () => {
@@ -21,5 +21,25 @@ describe('recommended rule validations', () => {
     delete mappings.message;
     const errors = validateMessagePresent(mappings);
     expect(errors).toEqual(['message field should be populated']);
+  });
+
+  test('destination not present with source object', () => {
+    const mappings = { ...getEcsMappingsMock() };
+    delete mappings.destination;
+    const errors = validateSrcDstPair(mappings);
+    expect(errors).toEqual(['destination fields should be populated with source fields']);
+  });
+
+  test('source not present with destination object', () => {
+    const mappings = { ...getEcsMappingsMock() };
+    delete mappings.source;
+    const errors = validateSrcDstPair(mappings);
+    expect(errors).toEqual(['source fields should be populated with destination fields']);
+  });
+
+  test('source and destination both present', () => {
+    const mappings = { ...getEcsMappingsMock() };
+    const errors = validateSrcDstPair(mappings);
+    expect(errors).toEqual([]);
   });
 });

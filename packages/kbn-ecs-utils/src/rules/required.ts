@@ -29,3 +29,7 @@ export const validateEcsVersionPresent = (mapping: SchemaFields): string[] => {
 export const validEcsTypeMapping = (entry: SchemaField, type: string): boolean => {
   return entry?.field === type;
 };
+
+export const runRequiredRules = (mapping: SchemaFields): string[] => {
+  return [...validateTimestampPresent(mapping), ...validateEcsVersionPresent(mapping)];
+};

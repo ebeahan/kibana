@@ -12,4 +12,10 @@ export const getEcsMappingsMock = () => ({
     version: '8.0.0',
   },
   message: 'Test',
+  source: {
+    address: '10.42.42.42',
+  },
+  destination: {
+    address: '10.42.42.42',
+  },
 });
