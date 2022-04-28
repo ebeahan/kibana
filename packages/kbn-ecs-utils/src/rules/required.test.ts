@@ -10,27 +10,29 @@ import { validateTimestampPresent, validateEcsVersionPresent } from './required'
 import { getEcsMappingsMock } from './mappings.mock';
 
 describe('required rule validations', () => {
+  let mappings;
+
+  beforeEach(() => {
+    mappings = { ...getEcsMappingsMock() };
+  });
+
   test('@timestamp is present', () => {
-    const mappings = { ...getEcsMappingsMock() };
     const errors = validateTimestampPresent(mappings);
     expect(errors).toEqual([]);
   });
 
   test('@timestamp not present', () => {
-    const mappings = { ...getEcsMappingsMock() };
     delete mappings['@timestamp'];
     const errors = validateTimestampPresent(mappings);
     expect(errors).toEqual(['@timestamp field must be populated']);
   });
 
   test('ecs.version is present', () => {
-    const mappings = { ...getEcsMappingsMock() };
     const errors = validateEcsVersionPresent(mappings);
     expect(errors).toEqual([]);
   });
 
   test('ecs.version not present', () => {
-    const mappings = { ...getEcsMappingsMock() };
     delete mappings.ecs.version;
     const errors = validateEcsVersionPresent(mappings);
     expect(errors).toEqual(['ecs.version field must be populated']);

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { get } from 'lodash';
+import { has } from 'lodash';
 
 import { SchemaField, SchemaFields } from '../types';
 
@@ -19,7 +19,7 @@ export const validateTimestampPresent = (mapping: SchemaFields): string[] => {
 };
 
 export const validateEcsVersionPresent = (mapping: SchemaFields): string[] => {
-  if (!get(mapping, 'ecs.version')) {
+  if (!has(mapping, 'ecs.version')) {
     return ['ecs.version field must be populated'];
   } else {
     return [];
