@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-export const getEcsMappingsMock = () => ({
+export const getEcsMappingMock = () => ({
   '@timestamp': '2022-03-31T18:48:35.000Z',
   ecs: {
     version: '8.0.0',
@@ -30,7 +30,7 @@ export const getEcsMappingsMock = () => ({
   },
 });
 
-export const getEcsDomainMappingsMock = () => ({
+export const getEcsDomainMappingMock = () => ({
   '@timestamp': '2022-03-31T18:48:35.000Z',
   ecs: {
     version: '8.0.0',

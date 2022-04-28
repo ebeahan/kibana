@@ -6,35 +6,46 @@
  * Side Public License, v 1.
  */
 
-import { validateTimestampPresent, validateEcsVersionPresent } from './required';
-import { getEcsMappingsMock } from './mappings.mock';
+import { omit } from 'lodash';
+
+import { validateTimestampPresent, validateEcsVersionPresent, runRequiredRules } from './required';
+import { getEcsMappingMock } from './mappings.mock';
 
 describe('required rule validations', () => {
-  let mappings;
+  let mapping;
 
   beforeEach(() => {
-    mappings = { ...getEcsMappingsMock() };
+    mapping = { ...getEcsMappingMock() };
   });
 
   test('@timestamp is present', () => {
-    const errors = validateTimestampPresent(mappings);
+    const errors = validateTimestampPresent(mapping);
     expect(errors).toEqual([]);
   });
 
   test('@timestamp not present', () => {
-    delete mappings['@timestamp'];
-    const errors = validateTimestampPresent(mappings);
+    delete mapping['@timestamp'];
+    const errors = validateTimestampPresent(mapping);
     expect(errors).toEqual(['@timestamp field must be populated']);
   });
 
   test('ecs.version is present', () => {
-    const errors = validateEcsVersionPresent(mappings);
+    const errors = validateEcsVersionPresent(mapping);
     expect(errors).toEqual([]);
   });
 
   test('ecs.version not present', () => {
-    delete mappings.ecs.version;
-    const errors = validateEcsVersionPresent(mappings);
+    delete mapping.ecs.version;
+    const errors = validateEcsVersionPresent(mapping);
     expect(errors).toEqual(['ecs.version field must be populated']);
+  });
+
+  test('run all required validations', () => {
+    const incompleteMapping = omit(mapping, ['@timestamp', 'ecs.version']);
+    const errors = runRequiredRules(incompleteMapping);
+    expect(errors).toEqual([
+      '@timestamp field must be populated',
+      'ecs.version field must be populated',
+    ]);
   });
 });

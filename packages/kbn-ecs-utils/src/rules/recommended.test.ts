@@ -6,65 +6,78 @@
  * Side Public License, v 1.
  */
 
+import { omit } from 'lodash';
+
 import {
+  runRecommendedRules,
   validateIpWithAddr,
   validateMessagePresent,
   validateSrcDstPair,
   validateClientSrcPair,
   validateServerDstPair,
 } from './recommended';
-import { getEcsMappingsMock } from './mappings.mock';
+import { getEcsMappingMock } from './mappings.mock';
 
 describe('recommended rule validations', () => {
-  let mappings;
+  let mapping;
 
   beforeEach(() => {
-    mappings = { ...getEcsMappingsMock() };
+    mapping = { ...getEcsMappingMock() };
   });
 
   test('message field is present', () => {
-    const errors = validateMessagePresent(mappings);
+    const errors = validateMessagePresent(mapping);
     expect(errors).toEqual([]);
   });
 
   test('message field not present', () => {
-    delete mappings.message;
-    const errors = validateMessagePresent(mappings);
+    delete mapping.message;
+    const errors = validateMessagePresent(mapping);
     expect(errors).toEqual(['message field should be populated']);
   });
 
   test('destination not present with source object', () => {
-    delete mappings.destination;
-    const errors = validateSrcDstPair(mappings);
+    delete mapping.destination;
+    const errors = validateSrcDstPair(mapping);
     expect(errors).toEqual(['destination fields should be populated with source fields']);
   });
 
   test('source not present with destination object', () => {
-    delete mappings.source;
-    const errors = validateSrcDstPair(mappings);
+    delete mapping.source;
+    const errors = validateSrcDstPair(mapping);
     expect(errors).toEqual(['source fields should be populated with destination fields']);
   });
 
   test('source and destination both present', () => {
-    const errors = validateSrcDstPair(mappings);
+    const errors = validateSrcDstPair(mapping);
     expect(errors).toEqual([]);
   });
 
   test('source not present with client', () => {
-    delete mappings.source;
-    const errors = validateClientSrcPair(mappings);
+    delete mapping.source;
+    const errors = validateClientSrcPair(mapping);
     expect(errors).toEqual(['source fields should be populated alongside client fields']);
   });
 
   test('destination not present with server', () => {
-    delete mappings.destination;
-    const errors = validateServerDstPair(mappings);
+    delete mapping.destination;
+    const errors = validateServerDstPair(mapping);
     expect(errors).toEqual(['destination fields should be populated alongside server fields']);
   });
 
   test('source.address without source.ip', () => {
-    delete mappings.source.ip;
-    const errors = validateIpWithAddr(mappings);
+    delete mapping.source.ip;
+    const errors = validateIpWithAddr(mapping);
     expect(errors).toEqual(['source.ip expected with source.address']);
+  });
+
+  test('run all recommended validations', () => {
+    const incompleteMapping = omit(mapping, ['message', 'source']);
+    const errors = runRecommendedRules(incompleteMapping);
+    expect(errors).toEqual([
+      'message field should be populated',
+      'source fields should be populated with destination fields',
+      'source fields should be populated alongside client fields',
+    ]);
   });
 });
