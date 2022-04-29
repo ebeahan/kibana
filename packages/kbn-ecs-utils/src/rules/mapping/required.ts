@@ -26,6 +26,6 @@ export const validateEcsVersionPresent = (mapping: SchemaFields): string[] => {
   }
 };
 
-export const runRequiredRules = (mapping: SchemaFields): string[] => {
+export const requiredRules = (mapping: SchemaFields): string[] => {
   return [...validateTimestampPresent(mapping), ...validateEcsVersionPresent(mapping)];
 };

@@ -69,7 +69,7 @@ export const validateIpWithAddr = (mapping: SchemaFields): string[] => {
   return errors;
 };
 
-export const runRecommendedRules = (mapping: SchemaFields): string[] => {
+export const recommendedRules = (mapping: SchemaFields): string[] => {
   return [
     ...validateMessagePresent(mapping),
     ...validateSrcDstPair(mapping),
