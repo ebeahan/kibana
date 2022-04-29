@@ -6,5 +6,5 @@
  * Side Public License, v 1.
  */
 
-export * from './field';
-export * from './mapping';
+export * from './recommended';
+export * from './required';

@@ -6,5 +6,8 @@
  * Side Public License, v 1.
  */
 
-export * from './field';
-export * from './mapping';
+import { SchemaField } from '../../types';
+
+export const validEcsTypeMapping = (entry: SchemaField, type: string): boolean => {
+  return entry?.field === type;
+};

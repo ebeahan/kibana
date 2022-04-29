@@ -8,7 +8,7 @@
 
 import { has } from 'lodash';
 
-import { SchemaField, SchemaFields } from '../types';
+import { SchemaFields } from '../../types';
 
 export const validateTimestampPresent = (mapping: SchemaFields): string[] => {
   if (!('@timestamp' in mapping)) {
@@ -24,10 +24,6 @@ export const validateEcsVersionPresent = (mapping: SchemaFields): string[] => {
   } else {
     return [];
   }
-};
-
-export const validEcsTypeMapping = (entry: SchemaField, type: string): boolean => {
-  return entry?.field === type;
 };
 
 export const runRequiredRules = (mapping: SchemaFields): string[] => {

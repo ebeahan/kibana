@@ -8,7 +8,7 @@
 
 import { filter, has } from 'lodash';
 
-import { SchemaFields } from '../types';
+import { SchemaFields } from '../../types';
 
 export const validateMessagePresent = (mapping: SchemaFields): string[] => {
   if (!('message' in mapping)) {
