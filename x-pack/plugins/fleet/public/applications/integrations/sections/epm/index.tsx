@@ -16,11 +16,11 @@ import { IntegrationsStateContextProvider, useBreadcrumbs, useStartServices } fr
 import { EPMHomePage } from './screens/home';
 import { Detail } from './screens/detail';
 import { Policy } from './screens/policy';
-import { CreateIntegration } from './screens/create';
+import { CreateAutomaticImportIntegration } from './screens/create';
 import { CustomLanguagesOverview } from './screens/detail/custom_languages_overview';
 
 export const EPMApp: React.FunctionComponent = () => {
-  const { integrationAssistant } = useStartServices();
+  const { automaticImport } = useStartServices();
   useBreadcrumbs('integrations');
 
   return (
@@ -40,9 +40,9 @@ export const EPMApp: React.FunctionComponent = () => {
           </React.Suspense>
         </IntegrationsStateContextProvider>
       </Route>
-      {integrationAssistant && (
-        <Route path={INTEGRATIONS_ROUTING_PATHS.integrations_create}>
-          <CreateIntegration />
+      {automaticImport && (
+        <Route path={INTEGRATIONS_ROUTING_PATHS.integration_automatic_import}>
+          <CreateAutomaticImportIntegration />
         </Route>
       )}
       <Route path={INTEGRATIONS_ROUTING_PATHS.integrations}>

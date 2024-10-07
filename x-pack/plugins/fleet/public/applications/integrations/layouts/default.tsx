@@ -21,7 +21,7 @@ interface Props {
 
 export const DefaultLayout: React.FC<Props> = memo(
   ({ section, children, notificationsBySection }) => {
-    const { integrationAssistant } = useStartServices();
+    const { automaticImport } = useStartServices();
     const { getHref } = useLink();
     const tabs = [
       {
@@ -46,7 +46,7 @@ export const DefaultLayout: React.FC<Props> = memo(
       },
     ];
 
-    const { CreateIntegrationCardButton } = integrationAssistant?.components ?? {};
+    const { CreateIntegrationCardButton } = automaticImport?.components ?? {};
 
     return (
       <WithHeaderLayout
@@ -79,9 +79,9 @@ export const DefaultLayout: React.FC<Props> = memo(
         }
         rightColumnGrow={false}
         rightColumn={
-          CreateIntegrationCardButton ? (
+          CreateAutomaticImportCardButton ? (
             <EuiFlexItem grow={false}>
-              <CreateIntegrationCardButton />
+              <CreateAutomaticImportCardButton />
             </EuiFlexItem>
           ) : undefined
         }

@@ -131,5 +131,5 @@ export const securityDefaultProductFeaturesConfig: DefaultSecurityProductFeature
   [ProductFeatureSecurityKey.cloudSecurityPosture]: {},
 
   // Security PLIs
-  [ProductFeatureSecurityKey.integrationAssistant]: {},
+  [ProductFeatureSecurityKey.automaticImport]: {},
 };
